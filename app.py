@@ -114,30 +114,3 @@ if st.button("Analyze Bias", use_container_width=True, type="primary"):
         st.warning("Please enter a headline to analyze.")
 """
 
-with open("app.py", "w") as f:
-    f.write(streamlit_code)
-
-# Create requirements.txt
-requirements_content = """streamlit
-pandas
-numpy
-scikit-learn
-torch
-transformers
-datasets
-sentence-transformers
-"""
-with open("requirements.txt", "w") as f:
-    f.write(requirements_content)
-print("Created app.py and requirements.txt.")
-
-# --- 4. Auto-Download the Zipped Model Artifacts ---
-print("\nZipping model artifacts...")
-!zip -r ft_bias_model_deployment.zip ft_bias_model/ le_classes.txt app.py requirements.txt
-
-print("Triggering automatic download of 'ft_bias_model_deployment.zip'...")
-try:
-    files.download('ft_bias_model_deployment.zip')
-    print("Download initiated. Check your browser's downloads.")
-except Exception as e:
-    print("Download failed. Please manually download the 'ft_bias_model_deployment.zip' file from the Colab file browser (left sidebar).")
