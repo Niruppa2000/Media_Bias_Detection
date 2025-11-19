@@ -1,7 +1,7 @@
 ## --- 8. STREAMLIT DEPLOYMENT SETUP AND AUTO-DOWNLOAD ---
 import os
 import subprocess
-import nest_asyncio
+#import nest_asyncio
 from google.colab import files
 
 # --- 1. Save Model and Tokenizer ---
@@ -113,4 +113,5 @@ if st.button("Analyze Bias", use_container_width=True, type="primary"):
     else:
         st.warning("Please enter a headline to analyze.")
 """
+
 
