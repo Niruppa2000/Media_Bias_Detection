@@ -11,7 +11,7 @@ from peft import PeftModel
 # CONFIG
 # =========================
 BASE_MODEL_NAME = "distilbert-base-uncased"
-LORA_ADAPTER_PATH = "ft_lora_adapter"          # folder you exported from Colab
+LORA_ADAPTER_PATH = "ft_lora_adapter"          # folder exported from Colab
 HEAD_FILE = os.path.join(LORA_ADAPTER_PATH, "cls_head.pt")
 LE_CLASSES_FILE = "le_classes.txt"             # e.g. "Left,Neutral,Right"
 
@@ -70,7 +70,7 @@ def load_assets():
         st.error(f"Error loading LoRA adapter from '{LORA_ADAPTER_PATH}': {e}")
         return None, None, None
 
-    # ---- Load fine-tuned classifier head (critical!) ----
+    # ---- Load fine-tuned classifier head ----
     if os.path.exists(HEAD_FILE):
         try:
             head_state = torch.load(HEAD_FILE, map_location="cpu")
@@ -145,7 +145,7 @@ if model and tokenizer:
                 st.success("Analysis complete!")
                 st.subheader(f"Predicted Bias: **{pred_label}**")
 
-                # Build probability dataframe
+                # Probability distribution
                 prob_df = pd.DataFrame(
                     {
                         "Bias": label_classes,
@@ -164,4 +164,3 @@ else:
         "Check that 'ft_lora_adapter', 'cls_head.pt', and 'le_classes.txt' "
         "are present in your GitHub repository root."
     )
-
